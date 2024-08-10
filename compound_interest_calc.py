@@ -3,7 +3,7 @@ while True:
     amount_invested = float(input("Enter the amount to invest (£): "))
     if amount_invested <=0:
         print("The amount invested cannot be less than 0.")
-    else:https://www.geeksforgeeks.org/how-to-replace-values-in-a-list-in-python/
+    else:
         break
 
 while True:
