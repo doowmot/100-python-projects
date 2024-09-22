@@ -1,25 +1,21 @@
 import random
 
-username = input('want to play a game...? what is your name? ')
+random_num = random.randint(1, 10)
+counter = 1
 
-print('well, ' + username + ', were going to have some fun...')
-print('i am thinking of a number between 1 and 10. What is the number?')
+while True:
 
-secretNumber = random.randint(1, 10)
+    guess = int(input("I'm thinking of a number between 1 and 10. What is the number? "))
 
-for numGuesses in range(1-6):
-    guess = int(input())
-
-    if guess < secretNumber:
+    if guess < random_num:
         print('wrong. too low. try again.')
-    elif guess > secretNumber:
+        counter += 1
+    elif guess > random_num:
         print('wrong. too high. try again.')
+        counter +=1
+    elif guess == random_num:
+        print(f"Well done. it took you {counter} guesses")
     else:
         break
-
-    if guess == secretNumber:
-        print('you have beaten my this time ' + username + '. well done. it took you ' + str(numGuesses) + ' guesses')
-    else:
-        print('haha. you are rubbish ' + username + '. the number i was thinking of is ' + str(secretNumber))
 
 
