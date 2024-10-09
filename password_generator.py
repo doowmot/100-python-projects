@@ -1,42 +1,40 @@
-import random
 import string
+import secrets
 
-def generate_password(min_length, numbers = True, special_characters = True):
-    letters = string.ascii_letters
-    digits = string.digits
-    special = string.punctuation 
+letters = string.ascii_letters
+digits = string.digits
+special_chars = string.punctuation 
 
-    characters = letters
-    if numbers:
-        characters += digits
-    if special_characters:
-        characters += special
+password_len = int(input("Enter the password length: "))
+has_letters = input("Do you want to include letters? (Y/N): ").lower() == "y"
+has_digits = input("Do you want to include numbers? (Y/N): ").lower() == "y"
+has_special_chars = input("Do you want to include special characters? (Y/N): ").lower() == "y"
 
-    password = ""
-    meets_criteria = False
-    has_number = False
-    has_special = False
+# or press q to quit..?
 
-    while not meets_criteria or len(password) < min_length:
-        new_char = random.choice(characters)
-        password += new_char
+char_pool = ''
+if has_letters:
+    char_pool += letters
+if has_digits:
+    char_pool += digits
+if has_special_chars:
+    char_pool += special_chars
 
-        if new_char in digits:
-            has_number = True
-        elif new_char in special:
-            has_special = True
+if not char_pool:
+    print("Error: You must select at least one character type.")
+    exit()
 
-        meets_criteria = True
-        if numbers:
-            meets_criteria = has_number
-        if special_characters:
-            meets_criteria = meets_criteria + has_special
+password = ''.join(secrets.choice(char_pool) for _ in range(password_len))
 
-    return password
+print("Generated password:", password)
 
-pass_len = input("Enter the password length: ")
-has_num = input("Do you want to include numbers? (Y/N): ").lower() == "y"
-has_special = input("Do you want to include special characters? (Y/N): ").lower() == "y"
+save_password = input("Would you like to store the password in a text file? (Y/N): ")
 
-password = generate_password(pass_len, has_num, has_special)
-print("Generated Password: ", password)
+if save_password == "y":
+    reference = input("Enter the name of the reference to store the password: ")
+    with open('passwords.txt', 'a') as file:
+        file.write(f"\nReference: {reference} | Password: {password}")
+print(f"Password: '{password}' has been saved to passwords.txt under the reference '{reference}'")
+
+
+# next task: make it interactive - add gui.
