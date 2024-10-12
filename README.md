@@ -1,0 +1,1 @@
+I'm learning Python. I believe you learn most by doing. Therefore I'm trying to create 100 python projects to build my skills. Some are extremely simple, but get progressively more complex. Inspired by Jennifer Dewalt's 180 websites in 180 days (https://jenniferdewalt.com)
